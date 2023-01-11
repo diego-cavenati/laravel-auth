@@ -62,7 +62,11 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
+                                            <form action="{{route('admin.projects.destroy', $project->slug)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Confirm</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
