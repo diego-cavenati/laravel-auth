@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -16,8 +17,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        return view('admin.admin', compact('projects'));
+        $projects = Project::orderByDesc('id')->get();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -27,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -38,7 +39,14 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $val_data = $request->validated();
+
+        $project_slug = Str::slug($val_data['title']);
+        $val_data['slug'] = $project_slug;
+
+        Project::create($val_data);
+
+        return to_route('admin.projects.index')->with('message', 'Project added successfully');
     }
 
     /**
@@ -49,7 +57,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        // return view('admin.show', compact($project));
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
