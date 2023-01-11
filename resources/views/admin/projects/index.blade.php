@@ -1,8 +1,11 @@
+@extends('layouts.admin')
+
+@section('content')
 <div class="container">
     <div class="heading d-flex justify-content-between">
         <h2>Projects</h2>
         <div>
-            <a href="{{route('projects.create')}}" class="btn btn-primary">Add Item</a>
+            <a href="{{route('admin.projects.create')}}" class="btn btn-primary">Add Item</a>
         </div>
     </div>
     <div class="row">
@@ -34,3 +37,4 @@
         </div>
     </div>
 </div>
+@endsection

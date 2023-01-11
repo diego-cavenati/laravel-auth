@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 50);
             $table->text('description');
+            $table->string('slug');
             $table->string('vote', 3);
             $table->string('link', 100);
             $table->timestamps();
