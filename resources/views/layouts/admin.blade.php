@@ -72,7 +72,7 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{url('/') }}">
+                        <a class="nav-link text-white" href="{{url('/')}}">
                             <svg class="bi pe-none me-2" width="16" height="16">
                                 <use xlink:href="#home" />
                             </svg>
@@ -80,7 +80,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link text-white" href="{{ url('admin') }}">
+                        <a class="nav-link text-white {{ Route::currentRouteName() === 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                             <svg class="bi pe-none me-2" width="16" height="16">
                                 <use xlink:href="#speedometer2" />
                             </svg>
@@ -88,7 +88,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('index') }}" class="nav-link text-white">
+                        <a href="{{ route('admin.projects.index') }}" class="nav-link text-white {{ Route::currentRouteName() === 'admin.projects.index' ? 'active' : '' }}">
                             <svg class="bi pe-none me-2" width="16" height="16">
                                 <use xlink:href="#grid" />
                             </svg>
