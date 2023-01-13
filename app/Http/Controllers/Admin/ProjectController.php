@@ -88,6 +88,15 @@ class ProjectController extends Controller
     {
         $val_data = $request->validated();
 
+        if ($request->hasFile('cover_image')) {
+
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+            $val_data['cover_image'] = $cover_image;
+        }
+
         $project_slug = Str::slug($val_data['title']);
         $val_data['slug'] = $project_slug;
 
@@ -104,6 +113,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->cover_image) {
+            Storage::delete($project->cover_image);
+        }
         $project->delete();
         return to_route('admin.projects.index')->with('message', 'Project Deleted succesfully');
     }
