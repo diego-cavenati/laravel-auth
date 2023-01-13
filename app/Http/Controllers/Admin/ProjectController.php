@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -40,6 +41,11 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $val_data = $request->validated();
+
+        if ($request->hasFile('cover_image')) {
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+            $val_data['cover_image'] = $cover_image;
+        }
 
         $project_slug = Str::slug($val_data['title']);
         $val_data['slug'] = $project_slug;

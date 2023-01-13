@@ -14,7 +14,7 @@
     </div>
     @endif
 
-    <form action="{{route('admin.projects.store')}}" method="post" class="card p-3">
+    <form action="{{route('admin.projects.store')}}" method="post" class="card p-3" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -23,6 +23,17 @@
             <small id="titleHelper" class="text-muted">Add the item title here, you have to fill it</small>
         </div>
         @error('title')
+        <div class="alert alert-danger" role="alert">
+            {{$message}}
+        </div>
+        @enderror
+
+        <div class="mb-3">
+            <label for="cover_image" class="form-label">cover_image</label>
+            <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" placeholder="Batman" aria-describedby="cover_imageHelper" value="{{old('cover_image')}}">
+            <small id="cover_imageHelper" class="text-muted">Add the item cover_image here, you have to fill it</small>
+        </div>
+        @error('cover_image')
         <div class="alert alert-danger" role="alert">
             {{$message}}
         </div>
