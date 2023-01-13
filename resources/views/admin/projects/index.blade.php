@@ -23,6 +23,7 @@
                         <th>id</th>
                         <th>title</th>
                         <th>slug</th>
+                        <th>cover image</th>
                         <th>description</th>
                         <th>vote</th>
                         <th>link</th>
@@ -35,6 +36,15 @@
                         <td>{{ $project->id }}</td>
                         <td>{{ $project->title }}</td>
                         <td>{{ $project->slug }}</td>
+                        <td>
+                            @if($project->cover_image)
+                            <img width="200px" src="{{asset('storage/' . $project->cover_image)}}" alt="">
+                            @else
+                            <span class="placeholder col-3 placeholder-lg bg-primary w-100 h-100">
+                                Placeholder
+                            </span>
+                            @endif
+                        </td>
                         <td>{{ $project->description }}</td>
                         <td>{{ $project->vote }}</td>
                         <td>{{ $project->link }}</td>

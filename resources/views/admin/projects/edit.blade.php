@@ -30,7 +30,7 @@
         @enderror
 
         <div class="mb-3">
-            <img width="140" src="{{asset('storage/', . $project->cover_image)}}" alt="">
+            <img width="140" src="{{asset('storage/' . $project->cover_image)}}" alt="">
             <div>
                 <label for="cover_image" class="form-label">Replace cover image</label>
                 <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" placeholder="Batman" aria-describedby="cover_imageHelper" value="{{old('cover_image')}}">
